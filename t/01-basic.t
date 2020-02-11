@@ -8,7 +8,7 @@ use Test::More 0.98;
 use Data::Sah::Filter qw(gen_filter);
 
 subtest "basics" => sub {
-    my $c = gen_filter(filter_names=>["Str::try_json_decode"], return_type=>"val");
+    my $c = gen_filter(filter_names=>["Str::try_decode_json"], return_type=>"val");
     my $res;
 
     # unfiltered
