@@ -1,18 +1,26 @@
 package Data::Sah::Filter::perl::Str::try_decode_json;
 
+use 5.010001;
+use strict;
+use warnings;
+
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
 
-use 5.010001;
-use strict;
-use warnings;
-
 sub meta {
     +{
         v => 1,
         summary => 'JSON-decode if we can, otherwise leave string as-is',
+        examples => [
+            {value=>undef, summary=>"Unfiltered"},
+            {value=>"foo", summary=>"Unquoted becomes as-is"},
+            {value=>"[1,", summary=>"Misquoted becomes as-is"},
+            {value=>q("foo"), filtered_value=>"foo", summary=>"Quoted string becomes string"},
+            {value=>q([1,2]), filtered_value=>[1,2], summary=>"Quoted array becomes array"},
+            {value=>"null", filtered_value=>undef, summary=>"Bare null keyword becomes undef"},
+        ],
     };
 }
 
